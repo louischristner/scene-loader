@@ -1,0 +1,18 @@
+{
+    "id": 2,
+    "name": "Scene 2",
+    "people": [
+        {
+            "id": 3,
+            "name": "Dilan"
+        },
+        {
+            "id": 4,
+            "name": "Damien"
+        },
+        {
+            "id": 5,
+            "name": "Dorian"
+        }
+    ]
+}
