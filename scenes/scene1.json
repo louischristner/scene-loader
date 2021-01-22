@@ -1,0 +1,14 @@
+{
+    "id": 1,
+    "name": "Scene 1",
+    "people": [
+        {
+            "id": 1,
+            "name": "Billy"
+        },
+        {
+            "id": 2,
+            "name": "Benjamin"
+        }
+    ]
+}
