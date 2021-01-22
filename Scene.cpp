@@ -46,6 +46,8 @@ bool Scene::loadFromFile(std::ifstream &stream)
                 if (line.find('{') != std::string::npos) {
                     _persons.push_back(Person());
                     (_persons.end() - 1)->loadFromFile(stream);
+                } else if (line.find(']') != std::string::npos) {
+                    break;
                 }
             }
         }
