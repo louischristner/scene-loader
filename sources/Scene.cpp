@@ -1,11 +1,11 @@
-#include "Person.hpp"
+#include "../headers/Scene.hpp"
 
-Person::Person(const size_t &id, const std::string &name):
+Scene::Scene(const size_t &id, const std::string &name):
     _id(id), _name(name)
 {
 }
 
-Person::Person(const std::string &filename)
+Scene::Scene(const std::string &filename)
 {
     std::ifstream stream(filename);
 
@@ -15,19 +15,20 @@ Person::Person(const std::string &filename)
     }
 }
 
-Person::Person(std::ifstream &stream)
+Scene::Scene(std::ifstream &stream)
 {
     this->loadFromFile(stream);
 }
 
-Person::~Person()
+Scene::~Scene()
 {
 }
 
-bool Person::loadFromFile(std::ifstream &stream)
+bool Scene::loadFromFile(std::ifstream &stream)
 {
     std::regex idRegex("\"id\": \\d+");
     std::regex nameRegex("\"name\": \"[\\w\\s]+\"");
+    std::regex personsRegex("\"persons\": ");
 
     for (std::string line; std::getline(stream, line); ) {
         std::smatch match;
@@ -40,6 +41,16 @@ bool Person::loadFromFile(std::ifstream &stream)
         } else if (std::regex_search(line, nameRegex)) {
             if (std::regex_search(sub, match, std::regex("[\\w\\s]+")))
                 _name = match[0];
+        } else if (std::regex_search(line, personsRegex)) {
+            while (std::getline(stream, line)) {
+                if (line.find("]") == std::string::npos) {
+                    std::smatch match;
+                    if (std::regex_search(line, match, std::regex("\".+\\.json\"")))
+                        _persons.push_back(Person(std::string(match[0]).substr(1, std::string(match[0]).size() - 2)));
+                } else {
+                    break;
+                }
+            }
         }
 
         if (line.find('}') != std::string::npos)
@@ -49,8 +60,12 @@ bool Person::loadFromFile(std::ifstream &stream)
     return true;
 }
 
-void Person::displayDebug(void) const noexcept
+void Scene::displayDebug(void) const noexcept
 {
     std::cerr << "ID: " << _id << std::endl;
     std::cerr << "NAME: " << _name << std::endl;
+    std::cerr << "PEOPLE: [" << std::endl;
+    for (const auto &person : _persons)
+        person.displayDebug();
+    std::cerr << "]" << std::endl;
 }

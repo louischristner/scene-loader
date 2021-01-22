@@ -1,9 +1,9 @@
 CC		=	g++
 
 SRC		=	main.cpp	\
-			Person.cpp	\
-			Scene.cpp	\
-			Game.cpp
+			sources/Person.cpp	\
+			sources/Scene.cpp	\
+			sources/Game.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
