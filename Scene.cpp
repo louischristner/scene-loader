@@ -43,10 +43,11 @@ bool Scene::loadFromFile(std::ifstream &stream)
                 _name = match[0];
         } else if (std::regex_search(line, personsRegex)) {
             while (std::getline(stream, line)) {
-                if (line.find('{') != std::string::npos) {
-                    _persons.push_back(Person());
-                    (_persons.end() - 1)->loadFromFile(stream);
-                } else if (line.find(']') != std::string::npos) {
+                if (line.find("]") == std::string::npos) {
+                    std::smatch match;
+                    if (std::regex_search(line, match, std::regex("\".+\\.json\"")))
+                        _persons.push_back(Person(std::string(match[0]).substr(1, std::string(match[0]).size() - 2)));
+                } else {
                     break;
                 }
             }

@@ -19,17 +19,11 @@ const std::vector<Scene> &Game::getScenes() const
     return _scenes;
 }
 
-const std::vector<Person> &Game::getPersons() const
-{
-    return _persons;
-}
-
 bool Game::loadFromFile(std::ifstream &stream)
 {
     std::regex scenesRegex("\"scenes\": ");
 
     for (std::string line; std::getline(stream, line); ) {
-
         if (std::regex_search(line, scenesRegex)) {
             while (std::getline(stream, line)) {
                 if (line.find("]") == std::string::npos) {

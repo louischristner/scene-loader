@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    Game game("game.json");
+    Game game("files/game.json");
 
     for (const auto &scene : game.getScenes())
         scene.displayDebug();

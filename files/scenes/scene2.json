@@ -1,0 +1,9 @@
+{
+    "id": 2,
+    "name": "Scene 2",
+    "persons": [
+        "files/persons/person3.json",
+        "files/persons/person4.json",
+        "files/persons/person5.json"
+    ]
+}
