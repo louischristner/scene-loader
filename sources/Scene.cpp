@@ -24,6 +24,11 @@ Scene::~Scene()
 {
 }
 
+const size_t &Scene::getId() const
+{
+    return _id;
+}
+
 bool Scene::loadFromFile(std::ifstream &stream)
 {
     std::regex idRegex("\"id\": \\d+");

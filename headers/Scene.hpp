@@ -15,6 +15,8 @@ class Scene {
         Scene(std::ifstream &stream);
         ~Scene();
 
+        const size_t &getId() const;
+
         bool loadFromFile(std::ifstream &stream);
         void displayDebug(void) const noexcept;
 

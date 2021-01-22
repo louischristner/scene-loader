@@ -1,6 +1,7 @@
 #include "../headers/Game.hpp"
 
-Game::Game(const std::string &filename)
+Game::Game(const std::string &filename):
+    _currentSceneIndex(0)
 {
     std::ifstream stream(filename);
 
@@ -12,6 +13,18 @@ Game::Game(const std::string &filename)
 
 Game::~Game()
 {
+}
+
+void Game::setCurrentSceneById(const size_t &id)
+{
+    for (size_t i = 0; i < _scenes.size(); i++)
+        if (_scenes[i].getId() == id)
+            _currentSceneIndex = i;
+}
+
+const Scene &Game::getCurrentScene() const
+{
+    return _scenes[_currentSceneIndex];
 }
 
 const std::vector<Scene> &Game::getScenes() const
