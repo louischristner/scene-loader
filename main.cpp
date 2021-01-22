@@ -1,21 +1,15 @@
-#include <vector>
-
-#include "Scene.hpp"
-
-#define PATH(name) "scenes/" + name + ".json"
+#include "Game.hpp"
 
 int main(void)
 {
-    std::vector<Scene> scenes;
-    std::string filenames[] = {
-        "scene1", "scene2"
-    };
+    Game game("game.json");
 
-    for (size_t i = 0; i < sizeof(filenames) / sizeof(std::string); i++)
-        scenes.push_back(Scene(PATH(filenames[i])));
-
-    for (const auto &scene : scenes)
+    for (const auto &scene : game.getScenes())
         scene.displayDebug();
+
+    // for (std::string input; std::getline(std::cin, input); ) {
+
+    // }
 
     return 0;
 }

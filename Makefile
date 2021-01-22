@@ -2,7 +2,8 @@ CC		=	g++
 
 SRC		=	main.cpp	\
 			Person.cpp	\
-			Scene.cpp
+			Scene.cpp	\
+			Game.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
