@@ -28,7 +28,7 @@ bool Scene::loadFromFile(std::ifstream &stream)
 {
     std::regex idRegex("\"id\": \\d+");
     std::regex nameRegex("\"name\": \"[\\w\\s]+\"");
-    std::regex peopleRegex("\"people\": ");
+    std::regex personsRegex("\"persons\": ");
 
     for (std::string line; std::getline(stream, line); ) {
         std::smatch match;
@@ -41,7 +41,7 @@ bool Scene::loadFromFile(std::ifstream &stream)
         } else if (std::regex_search(line, nameRegex)) {
             if (std::regex_search(sub, match, std::regex("[\\w\\s]+")))
                 _name = match[0];
-        } else if (std::regex_search(line, peopleRegex)) {
+        } else if (std::regex_search(line, personsRegex)) {
             while (std::getline(stream, line)) {
                 if (line.find('{') != std::string::npos) {
                     _persons.push_back(Person());

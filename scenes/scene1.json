@@ -1,7 +1,7 @@
 {
     "id": 1,
     "name": "Scene 1",
-    "people": [
+    "persons": [
         {
             "id": 1,
             "name": "Billy"
